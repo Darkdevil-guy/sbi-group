@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/logo.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script defer src="js/script.js"></script>
+    <title>SBI Group Gallery</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #041f38;
+            overflow-x: hidden;
+        }
+
+        .gallery-section {
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px 8%;
+            position: relative;
+        }
+
+        .gallery-section::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(0, 194, 255, 0.08);
+            border-radius: 50%;
+            top: -200px;
+            right: -150px;
+            filter: blur(80px);
+        }
+
+        .gallery-section::after {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 194, 255, 0.06);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -100px;
+            filter: blur(80px);
+        }
+
+        .gallery-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-title h1 {
+            font-size: 4rem;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 15px;
+            animation: fadeDown 1s ease;
+        }
+
+        .gallery-title span {
+            color: #00c2ff;
+        }
+
+        .gallery-title p {
+            color: #d6e8ff;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.8;
+            animation: fadeUp 1.2s ease;
+        }
+
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .filter-btn {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            transition: 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: linear-gradient(135deg, #00c2ff, #00e0ff);
+            transition: 0.5s ease;
+            z-index: -1;
+        }
+
+        .filter-btn:hover::before,
+        .filter-btn.active::before {
+            width: 100%;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            color: #041f38;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 194, 255, 0.3);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: 0.5s ease;
+            cursor: pointer;
+            animation: cardAnimation 1s ease forwards;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 194, 255, 0.25);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            transition: 0.7s ease;
+            display: block;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                    rgba(4, 31, 56, 0.95),
+                    transparent);
+            opacity: 0;
+            transition: 0.5s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 25px;
+        }
+
+        .gallery-card:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-content h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .gallery-content p {
+            color: #cfe7ff;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @keyframes cardAnimation {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-title h1 {
+                font-size: 2.7rem;
+            }
+
+            .gallery-card img {
+                height: 260px;
+            }
+
+            .gallery-section {
+                padding: 80px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpeg" alt="logo">
+            <span>SBI GROUP</span>
+        </div>
+        <nav>
+
+            <a href="index.html" class="">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+
+            <a href="gallery.html">
+                <i class="fas fa-image"></i>
+                <span>Gallery</span>
+            </a>
+
+            <a href="about.html">
+                <i class="fas fa-building"></i>
+                <span>About</span>
+            </a>
+
+            <a href="services.html">
+                <i class="fas fa-helmet-safety"></i>
+                <span>Services</span>
+            </a>
+
+            <a href="contact.html">
+                <i class="fas fa-phone"></i>
+                <span>Contact</span>
+            </a>
+
+        </nav>
+
+    </header>
+
+    <section class="gallery-section">
+
+        <div class="gallery-title">
+            <h1>SBI <span>Project Gallery</span></h1>
+            <p>
+                Explore our premium Civil Engineering and Mechanical Engineering
+                project works with modern infrastructure and industrial excellence.
+            </p>
+        </div>
+
+        <div class="gallery-filter">
+            <button class="filter-btn active" data-filter="all">All Works</button>
+            <button class="filter-btn" data-filter="civil">Civil Works</button>
+            <button class="filter-btn" data-filter="mechanical">Mechanical Works</button>
+        </div>
+
+        <div class="gallery-grid">
+
+            <!-- CIVIL -->
+
+            <div class="gallery-card civil">
+                <img src="images/civil/WhatsApp%20Image%202026-06-05%20at%2018.13.06_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Civil Construction</h3>
+                        <p>Modern structural development and infrastructure projects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card civil">
+                <img src="images/civil/2_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Commercial Building</h3>
+                        <p>Professional civil engineering execution with premium quality.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card civil">
+                <img src="images/civil/3_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Infrastructure Work</h3>
+                        <p>Advanced infrastructure and industrial civil projects.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card civil">
+                <img src="images/civil/4_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Civil Construction</h3>
+                        <p>Modern structural development and infrastructure projects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card civil">
+                <img src="images/civil/5_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Commercial Building</h3>
+                        <p>Professional civil engineering execution with premium quality.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card civil">
+                <img src="images/civil/6_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Infrastructure Work</h3>
+                        <p>Advanced infrastructure and industrial civil projects.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card civil">
+                <img src="images/civil/7_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Civil Construction</h3>
+                        <p>Modern structural development and infrastructure projects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card civil">
+                <img src="images/civil/8_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Commercial Building</h3>
+                        <p>Professional civil engineering execution with premium quality.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card civil">
+                <img src="images/civil/9_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Infrastructure Work</h3>
+                        <p>Advanced infrastructure and industrial civil projects.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card civil">
+                <img src="images/civil/10_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Civil Construction</h3>
+                        <p>Modern structural development and infrastructure projects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card civil">
+                <img src="images/civil/11_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Commercial Building</h3>
+                        <p>Professional civil engineering execution with premium quality.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card civil">
+                <img src="images/civil/12_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Infrastructure Work</h3>
+                        <p>Advanced infrastructure and industrial civil projects.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card civil">
+                <img src="images/civil/13_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Civil Construction</h3>
+                        <p>Modern structural development and infrastructure projects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card civil">
+                <img src="images/civil/14_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Commercial Building</h3>
+                        <p>Professional civil engineering execution with premium quality.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card civil">
+                <img src="images/civil/15_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Infrastructure Work</h3>
+                        <p>Advanced infrastructure and industrial civil projects.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- MECHANICAL -->
+
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.02 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Mechanical Setup</h3>
+                        <p>Industrial mechanical engineering and fabrication works.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.04 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Machine Installation</h3>
+                        <p>Heavy industrial machine setup and maintenance solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.05 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Industrial Engineering</h3>
+                        <p>Mechanical excellence with modern engineering standards.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.06 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Mechanical Setup</h3>
+                        <p>Industrial mechanical engineering and fabrication works.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.07 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Machine Installation</h3>
+                        <p>Heavy industrial machine setup and maintenance solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.08 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Industrial Engineering</h3>
+                        <p>Mechanical excellence with modern engineering standards.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.09 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Mechanical Setup</h3>
+                        <p>Industrial mechanical engineering and fabrication works.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.10 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Machine Installation</h3>
+                        <p>Heavy industrial machine setup and maintenance solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.11 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Industrial Engineering</h3>
+                        <p>Mechanical excellence with modern engineering standards.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.12 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Mechanical Setup</h3>
+                        <p>Industrial mechanical engineering and fabrication works.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.24 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Machine Installation</h3>
+                        <p>Heavy industrial machine setup and maintenance solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.15 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Industrial Engineering</h3>
+                        <p>Mechanical excellence with modern engineering standards.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.17 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Mechanical Setup</h3>
+                        <p>Industrial mechanical engineering and fabrication works.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.19 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Machine Installation</h3>
+                        <p>Heavy industrial machine setup and maintenance solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card mechanical">
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.22 PM_4xHQ.jpg" alt="">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <h3>Industrial Engineering</h3>
+                        <p>Mechanical excellence with modern engineering standards.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <footer class="footer">
+        <div class="footer-container">
+
+            <div class="footer-brand">
+                <img src="images/logo.jpeg" alt="SBI Group Logo">
+                <h2>SBI GROUP</h2>
+                <p>
+                    Srinivasa Build India Private Limited is a premium engineering and
+                    construction company delivering industrial, structural, and heavy lifting
+                    solutions with excellence and professionalism.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy-policy.html">Privacy & policy</a>
+                <a href="terms-and-conditions.html">Terms & conditions</a>
+            </div>
+
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Ballari, Karnataka</p>
+                <p><i class="fas fa-phone"></i> +91 96117 72529</p>
+                <p><i class="fas fa-phone"></i> +91 94492 26789</p>
+                <p><i class="fas fa-envelope"></i> sbi.pvtltd786@gmail.com</p>
+                <p><i class="fas fa-globe"></i> www.sbigroup.in</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 SBI Group. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const galleryCards = document.querySelectorAll(".gallery-card");
+
+        filterButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                document.querySelector(".filter-btn.active").classList.remove("active");
+                button.classList.add("active");
+
+                const filterValue = button.getAttribute("data-filter");
+
+                galleryCards.forEach(card => {
+
+                    card.style.transform = "scale(0.8)";
+                    card.style.opacity = "0";
+
+                    setTimeout(() => {
+
+                        if (filterValue === "all") {
+                            card.style.display = "block";
+                        }
+
+                        else if (card.classList.contains(filterValue)) {
+                            card.style.display = "block";
+                        }
+
+                        else {
+                            card.style.display = "none";
+                        }
+
+                        setTimeout(() => {
+                            card.style.transform = "scale(1)";
+                            card.style.opacity = "1";
+                        }, 100);
+
+                    }, 300);
+
+                });
+
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
