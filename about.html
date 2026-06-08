@@ -1,25 +1,404 @@
+```html id="4v7qxm"
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>About Us - SBI Group</title>
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/logo.jpeg">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* SCROLLBAR */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #021426;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00c2ff;
+            border-radius: 20px;
+        }
+
+        /* BACKGROUND */
+
+        .about-section {
+            padding: 140px 8% 100px;
+            background:
+                radial-gradient(circle at top right, #00c2ff15, transparent 30%),
+                radial-gradient(circle at bottom left, #0077ff15, transparent 30%),
+                #041f38;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+        }
+
+        /* GLOW EFFECTS */
+
+        .about-section::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: #00c2ff15;
+            filter: blur(120px);
+            top: -150px;
+            right: -100px;
+            z-index: 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #ffffff, #00c2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 900px;
+            margin: auto;
+            color: #c8d7e5;
+            line-height: 1.9;
+            margin-bottom: 80px;
+            font-size: 17px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* SPLIT LAYOUT */
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 70px;
+            align-items: center;
+            margin-bottom: 120px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .split-text h3 {
+            font-size: 2.4rem;
+            margin-bottom: 25px;
+            color: #fff;
+            position: relative;
+        }
+
+        .split-text h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 100px;
+            height: 4px;
+            border-radius: 20px;
+            background: linear-gradient(to right, #00c2ff, #0077ff);
+        }
+
+        .split-text p {
+            color: #d7e6f2;
+            line-height: 2;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        /* IMAGE */
+
+        .split-image {
+            position: relative;
+        }
+
+        .split-image img {
+            width: 100%;
+            border-radius: 30px;
+            transition: 0.8s;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .split-image img:hover {
+            transform: scale(1.04);
+            box-shadow: 0 25px 60px rgba(0, 194, 255, 0.35);
+        }
+
+        /* STATS */
+
+        .stats-section {
+            margin: 100px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            transition: 0.5s;
+            backdrop-filter: blur(12px);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-10px);
+            border-color: #00c2ff;
+            box-shadow: 0 20px 50px rgba(0, 194, 255, 0.25);
+        }
+
+        .stat-box i {
+            font-size: 3rem;
+            color: #00c2ff;
+            margin-bottom: 20px;
+        }
+
+        .stat-box h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .stat-box p {
+            color: #d7e6f2;
+        }
+
+        /* FOUNDATIONS */
+
+        .foundation-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 45px 35px;
+            border-radius: 25px;
+            transition: 0.5s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #00c2ff15, #0077ff15);
+            transition: 0.6s;
+            z-index: -1;
+        }
+
+        .card:hover::before {
+            width: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            border-color: #00c2ff80;
+            box-shadow: 0 20px 50px rgba(0, 194, 255, 0.25);
+        }
+
+        .card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .card p {
+            color: #d7e6f2;
+            line-height: 1.9;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            background: #021426;
+            padding-top: 80px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 0 8% 60px;
+        }
+
+        .footer-brand img {
+            width: 80px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 2px solid #00c2ff;
+        }
+
+        .footer h2,
+        .footer h3 {
+            margin-bottom: 20px;
+        }
+
+        .footer p,
+        .footer a {
+            color: #c8d7e5;
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: 0.4s;
+        }
+
+        .footer a:hover {
+            color: #00c2ff;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            padding: 25px;
+            color: #c8d7e5;
+        }
+
+        /* WHATSAPP */
+
+        .whatsapp-float {
+            position: fixed;
+            width: 65px;
+            height: 65px;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            text-decoration: none;
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:991px) {
+
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+        }
+
+        @media(max-width:768px) {
+
+            .section-title {
+                font-size: 2.8rem;
+            }
+
+            .split-text h3 {
+                font-size: 1.9rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+
 </head>
 
 <body>
 
     <header>
+
         <div class="logo">
             <img src="images/logo.jpeg" alt="logo">
             <span>SBI GROUP</span>
         </div>
+
         <nav>
 
-            <a href="index.html" class="">
+            <a href="index.html">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
@@ -48,111 +427,213 @@
 
     </header>
 
-    <section class="inner-page-section about-section">
-        <h2 class="section-title">About Us</h2>
-        <p class="section-subtitle">Srinivasa Build India Private Limited (SBI Group) is a premium engineering and
-            construction company delivering industrial, structural, and heavy lifting solutions.</p>
+    <section class="about-section">
 
-        <div class="split-layout">
+        <h2 class="section-title" data-aos="fade-up">
+            About Us
+        </h2>
+
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Srinivasa Build India Private Limited (SBI Group) is a premium engineering and
+            construction company delivering industrial, structural, and heavy lifting solutions.
+        </p>
+
+        <div class="split-layout" data-aos="fade-right">
+
             <div class="split-text">
-                <h3>Our Journey &amp; Story</h3>
-                <p>Founded with a vision to revolutionize heavy infrastructure execution in India, SBI Group (Srinivasa
-                    Build India Private Limited) has built a stellar reputation over the last 15 years. Based in
-                    Ballari, Karnataka, we have grown from a localized contracting firm into a leading heavy
-                    construction and engineering provider servicing major industrial giants across the country.</p>
-                <p>Our expertise spans complex structural erection, precise mechanical fabrication, and high-capacity
-                    lifting operations. We take pride in our ability to manage challenging project conditions,
-                    delivering work with speed, unmatched engineering precision, and a zero-incident safety record.</p>
+
+                <h3>Our Journey & Story</h3>
+
+                <p>
+                    Founded with a vision to revolutionize heavy infrastructure execution in India,
+                    SBI Group has built a stellar reputation over the last 15 years.
+                </p>
+
+                <p>
+                    We specialize in structural erection, precise mechanical fabrication,
+                    and high-capacity lifting operations with engineering excellence.
+                </p>
+
             </div>
+
             <div class="split-image">
-                <img src="images/industrial_crane.png" alt="Industrial Construction Site with Crane">
+                <img src="images/industrial_crane.png" alt="">
             </div>
+
         </div>
 
-        <div class="split-layout">
+        <div class="split-layout" data-aos="fade-left">
+
             <div class="split-text">
-                <h3>People &amp; Engineering Expertise</h3>
-                <p>At the core of SBI Group's success is our highly trained workforce. We believe that state-of-the-art
-                    machinery is only as good as the minds operating it. Our team consists of qualified civil and
-                    mechanical engineers, certified crane operators, professional riggers, and dedicated safety
-                    officers.</p>
-                <p>Every project is preceded by rigorous design analysis, risk assessments, and lift plan designs to
-                    ensure flawless execution on site. From large-scale industrial warehouses to precise mechanical
-                    installations in power and steel plants, our team brings a wealth of specialized knowledge to ensure
-                    your project's success.</p>
-            </div>
-            <div class="split-image">
-                <img src="images/engineering_team.png" alt="SBI Group Engineering Team">
-                <img src="images/engineering_team.png" alt="SBI Group Engineering Team">
+
+                <h3>People & Engineering Expertise</h3>
+
+                <p>
+                    At the core of SBI Group's success is our highly trained workforce,
+                    professional engineers, certified operators, and dedicated safety officers.
+                </p>
+
+                <p>
+                    Every project undergoes rigorous planning, risk assessment,
+                    and engineering analysis to ensure flawless execution.
+                </p>
 
             </div>
+
+            <div class="split-image">
+                <img src="images/engineering_team.png" alt="">
+            </div>
+
         </div>
 
-        <div style="margin-top: 6rem;">
-            <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 3rem; color: var(--text-main);">Our
-                Foundations</h3>
+        <!-- STATS -->
+
+        <div class="stats-section">
+
+            <div class="stat-box" data-aos="zoom-in">
+                <i class="fas fa-building"></i>
+                <h2>15+</h2>
+                <p>Years Experience</p>
+            </div>
+
+            <div class="stat-box" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-diagram-project"></i>
+                <h2>250+</h2>
+                <p>Projects Completed</p>
+            </div>
+
+            <div class="stat-box" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-users"></i>
+                <h2>120+</h2>
+                <p>Professional Team</p>
+            </div>
+
+            <div class="stat-box" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-award"></i>
+                <h2>100%</h2>
+                <p>Client Satisfaction</p>
+            </div>
+
+        </div>
+
+        <!-- FOUNDATIONS -->
+
+        <div style="margin-top:6rem;">
+
+            <h3 class="foundation-title" data-aos="fade-up">
+                Our Foundations
+            </h3>
+
             <div class="cards">
-                <div class="card">
+
+                <div class="card" data-aos="flip-left">
+
                     <h3>Our Vision</h3>
-                    <p>To be the premier engineering partner in India's industrial growth, setting the gold standard for
-                        safety, quality, and complex engineering project execution.</p>
+
+                    <p>
+                        To be the premier engineering partner in India's industrial growth,
+                        setting the gold standard for safety and engineering excellence.
+                    </p>
+
                 </div>
-                <div class="card">
+
+                <div class="card" data-aos="flip-left" data-aos-delay="100">
+
                     <h3>Our Mission</h3>
-                    <p>To deliver robust engineering, heavy erection, and industrial construction services with
-                        precision, efficiency, and absolute commitment to safety and engineering standards.</p>
+
+                    <p>
+                        To deliver robust engineering, heavy erection,
+                        and industrial construction services with precision and safety.
+                    </p>
+
                 </div>
-                <div class="card">
+
+                <div class="card" data-aos="flip-left" data-aos-delay="200">
+
                     <h3>Core Values</h3>
-                    <p>Professionalism, integrity, engineering excellence, client satisfaction, and an uncompromising
-                        stance on safety in all complex operational conditions.</p>
+
+                    <p>
+                        Professionalism, integrity, engineering excellence,
+                        client satisfaction, and uncompromising safety standards.
+                    </p>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
     <footer class="footer">
+
         <div class="footer-container">
+
             <div class="footer-brand">
-                <img src="images/logo.jpeg" alt="SBI Group Logo">
+
+                <img src="images/logo.jpeg" alt="">
+
                 <h2>SBI GROUP</h2>
+
                 <p>
                     Srinivasa Build India Private Limited is a premium engineering and
                     construction company delivering industrial, structural, and heavy lifting
                     solutions with excellence and professionalism.
                 </p>
+
             </div>
+
             <div class="footer-links">
+
                 <h3>Quick Links</h3>
+
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
                 <a href="contact.html">Contact</a>
                 <a href="privacy-policy.html">Privacy & policy</a>
                 <a href="terms-and-conditions.html">Terms & conditions</a>
+
             </div>
+
             <div class="footer-contact">
+
                 <h3>Contact Info</h3>
+
                 <p><i class="fas fa-map-marker-alt"></i> Ballari, Karnataka</p>
                 <p><i class="fas fa-phone"></i> +91 96117 72529</p>
                 <p><i class="fas fa-phone"></i> +91 94492 26789</p>
                 <p><i class="fas fa-envelope"></i> sbi.pvtltd786@gmail.com</p>
                 <p><i class="fas fa-globe"></i> www.sbigroup.in</p>
+
             </div>
+
         </div>
+
         <div class="footer-bottom">
             <p>© 2026 SBI Group. All Rights Reserved.</p>
         </div>
+
     </footer>
 
-    <!-- WhatsApp Floating Button -->
+    <!-- WHATSAPP -->
+
     <a href="https://wa.me/919611772529" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+
+        AOS.init({
+            duration: 1200,
+            once: true
+        });
+
+    </script>
 
 </body>
 
 </html>
+```

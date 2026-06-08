@@ -2,253 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="images/logo.jpeg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script defer src="js/script.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>SBI Group Gallery</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-        }
+    <link rel="icon" href="images/logo.jpeg">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/script.js"></script>
 
-        body {
-            background: #041f38;
-            overflow-x: hidden;
-        }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        .gallery-section {
-            width: 100%;
-            min-height: 100vh;
-            padding: 100px 8%;
-            position: relative;
-        }
-
-        .gallery-section::before {
-            content: "";
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: rgba(0, 194, 255, 0.08);
-            border-radius: 50%;
-            top: -200px;
-            right: -150px;
-            filter: blur(80px);
-        }
-
-        .gallery-section::after {
-            content: "";
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: rgba(0, 194, 255, 0.06);
-            border-radius: 50%;
-            bottom: -150px;
-            left: -100px;
-            filter: blur(80px);
-        }
-
-        .gallery-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .gallery-title h1 {
-            font-size: 4rem;
-            color: #ffffff;
-            font-weight: 700;
-            margin-bottom: 15px;
-            animation: fadeDown 1s ease;
-        }
-
-        .gallery-title span {
-            color: #00c2ff;
-        }
-
-        .gallery-title p {
-            color: #d6e8ff;
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: auto;
-            line-height: 1.8;
-            animation: fadeUp 1.2s ease;
-        }
-
-        .gallery-filter {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .filter-btn {
-            padding: 14px 32px;
-            border: none;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.08);
-            color: #fff;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-            transition: 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .filter-btn::before {
-            content: "";
-            position: absolute;
-            width: 0%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            background: linear-gradient(135deg, #00c2ff, #00e0ff);
-            transition: 0.5s ease;
-            z-index: -1;
-        }
-
-        .filter-btn:hover::before,
-        .filter-btn.active::before {
-            width: 100%;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            color: #041f38;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 194, 255, 0.3);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 35px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .gallery-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: 0.5s ease;
-            cursor: pointer;
-            animation: cardAnimation 1s ease forwards;
-        }
-
-        .gallery-card:hover {
-            transform: translateY(-12px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(0, 194, 255, 0.25);
-        }
-
-        .gallery-card img {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            transition: 0.7s ease;
-            display: block;
-        }
-
-        .gallery-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top,
-                    rgba(4, 31, 56, 0.95),
-                    transparent);
-            opacity: 0;
-            transition: 0.5s ease;
-            display: flex;
-            align-items: flex-end;
-            padding: 25px;
-        }
-
-        .gallery-card:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-content h3 {
-            color: #fff;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .gallery-content p {
-            color: #cfe7ff;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        @keyframes cardAnimation {
-            from {
-                opacity: 0;
-                transform: translateY(60px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .gallery-title h1 {
-                font-size: 2.7rem;
-            }
-
-            .gallery-card img {
-                height: 260px;
-            }
-
-            .gallery-section {
-                padding: 80px 5%;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -288,318 +53,569 @@
 
     </header>
 
-    <section class="gallery-section">
+    <div class="bg-grid"></div>
+    <div class="glow1"></div>
+    <div class="glow2"></div>
 
-        <div class="gallery-title">
-            <h1>SBI <span>Project Gallery</span></h1>
-            <p>
-                Explore our premium Civil Engineering and Mechanical Engineering
-                project works with modern infrastructure and industrial excellence.
-            </p>
+    <section class="gallery-header">
+
+        <h1>SBI GROUP GALLERY</h1>
+
+        <p>
+            Explore our premium portfolio of civil engineering and mechanical engineering works.
+            Each section has its own unique visual experience and industrial animations.
+        </p>
+
+        <div class="filter-buttons">
+
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-layer-group"></i> All Works
+            </button>
+
+            <button class="filter-btn" data-filter="civil">
+                <i class="fas fa-building"></i> Civil Works
+            </button>
+
+            <button class="filter-btn" data-filter="mechanical">
+                <i class="fas fa-gears"></i> Mechanical Works
+            </button>
+
         </div>
 
-        <div class="gallery-filter">
-            <button class="filter-btn active" data-filter="all">All Works</button>
-            <button class="filter-btn" data-filter="civil">Civil Works</button>
-            <button class="filter-btn" data-filter="mechanical">Mechanical Works</button>
-        </div>
+    </section>
+
+    <section class="gallery-container">
 
         <div class="gallery-grid">
 
-            <!-- CIVIL -->
+            <!-- 1 CIVIL -->
 
-            <div class="gallery-card civil">
-                <img src="images/civil/WhatsApp%20Image%202026-06-05%20at%2018.13.06_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Civil Construction</h3>
-                        <p>Modern structural development and infrastructure projects.</p>
-                    </div>
-                </div>
-            </div>
+            <div class="gallery-card civil show" data-category="civil">
 
-            <div class="gallery-card civil">
-                <img src="images/civil/2_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Commercial Building</h3>
-                        <p>Professional civil engineering execution with premium quality.</p>
-                    </div>
-                </div>
-            </div>
+                <div class="light"></div>
 
-            <div class="gallery-card civil">
-                <img src="images/civil/3_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Infrastructure Work</h3>
-                        <p>Advanced infrastructure and industrial civil projects.</p>
-                    </div>
+                <img src="images/civil/WhatsApp Image 2026-06-05 at 18.13.06_4xHQ.jpg">
+
+                <div class="tag">CIVIL WORK</div>
+
+                <div class="icon-box">
+                    <i class="fas fa-building"></i>
                 </div>
-            </div>
-            <div class="gallery-card civil">
-                <img src="images/civil/4_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Civil Construction</h3>
-                        <p>Modern structural development and infrastructure projects.</p>
-                    </div>
+
+                <div class="overlay">
+                    <h3>Civil Construction</h3>
+                    <p>Modern infrastructure and structural engineering works.</p>
                 </div>
+
             </div>
 
-            <div class="gallery-card civil">
-                <img src="images/civil/5_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Commercial Building</h3>
-                        <p>Professional civil engineering execution with premium quality.</p>
-                    </div>
+            <!-- 1 MECHANICAL -->
+
+            <div class="gallery-card mechanical show" data-category="mechanical">
+
+                <div class="light"></div>
+
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.02 PM_4xHQ.jpg">
+
+                <div class="tag">MECHANICAL</div>
+
+                <div class="icon-box">
+                    <i class="fas fa-gear"></i>
+                </div>
+
+                <div class="overlay">
+                    <h3>Mechanical Setup</h3>
+                    <p>Industrial engineering and fabrication systems.</p>
+                </div>
+
+            </div>
+
+            <!-- 2 CIVIL -->
+
+            <div class="gallery-card civil show" data-category="civil">
+
+                <div class="light"></div>
+
+                <img src="images/civil/2_4xHQ.jpg">
+
+                <div class="tag">CIVIL WORK</div>
+
+                <div class="icon-box">
+                    <i class="fas fa-city"></i>
+                </div>
+
+                <div class="overlay">
+                    <h3>Commercial Building</h3>
+                    <p>Premium quality civil engineering execution.</p>
+                </div>
+
+            </div>
+
+            <!-- 2 MECHANICAL -->
+
+            <div class="gallery-card mechanical show" data-category="mechanical">
+
+                <div class="light"></div>
+
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.04 PM_4xHQ.jpg">
+
+                <div class="tag">MECHANICAL</div>
+
+                <div class="icon-box">
+                    <i class="fas fa-cogs"></i>
+                </div>
+
+                <div class="overlay">
+                    <h3>Machine Installation</h3>
+                    <p>Heavy industrial machine setup solutions.</p>
+                </div>
+
+            </div>
+
+            <!-- 3 CIVIL -->
+
+            <div class="gallery-card civil show" data-category="civil">
+
+                <div class="light"></div>
+
+                <img src="images/civil/3_4xHQ.jpg">
+
+                <div class="tag">CIVIL WORK</div>
+
+                <div class="icon-box">
+                    <i class="fas fa-road"></i>
+                </div>
+
+                <div class="overlay">
+                    <h3>Infrastructure Work</h3>
+                    <p>Advanced infrastructure development projects.</p>
+                </div>
+
+            </div>
+
+            <!-- 3 MECHANICAL -->
+
+            <div class="gallery-card mechanical show" data-category="mechanical">
+
+                <div class="light"></div>
+
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.05 PM_4xHQ.jpg">
+
+                <div class="tag">MECHANICAL</div>
+
+                <div class="icon-box">
+                    <i class="fas fa-industry"></i>
+                </div>
+
+                <div class="overlay">
+                    <h3>Industrial Engineering</h3>
+                    <p>Mechanical engineering with modern standards.</p>
+                </div>
+
+            </div>
+
+            <!-- CONTINUE SAME PATTERN -->
+
+            <div class="gallery-card civil show" data-category="civil">
+                <div class="light"></div>
+                <img src="images/civil/4_4xHQ.jpg">
+                <div class="tag">CIVIL WORK</div>
+                <div class="icon-box"><i class="fas fa-building"></i></div>
+                <div class="overlay">
+                    <h3>Civil Construction</h3>
+                    <p>Modern structural development projects.</p>
                 </div>
             </div>
 
-            <div class="gallery-card civil">
-                <img src="images/civil/6_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Infrastructure Work</h3>
-                        <p>Advanced infrastructure and industrial civil projects.</p>
-                    </div>
+            <div class="gallery-card mechanical show" data-category="mechanical">
+                <div class="light"></div>
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.06 PM_4xHQ.jpg">
+                <div class="tag">MECHANICAL</div>
+                <div class="icon-box"><i class="fas fa-gears"></i></div>
+                <div class="overlay">
+                    <h3>Mechanical Setup</h3>
+                    <p>Industrial fabrication and engineering works.</p>
                 </div>
             </div>
-            <div class="gallery-card civil">
+
+            <div class="gallery-card civil show" data-category="civil">
+                <div class="light"></div>
+                <img src="images/civil/5_4xHQ.jpg">
+                <div class="tag">CIVIL WORK</div>
+                <div class="icon-box"><i class="fas fa-city"></i></div>
+                <div class="overlay">
+                    <h3>Commercial Building</h3>
+                    <p>Professional construction execution works.</p>
+                </div>
+            </div>
+
+            <div class="gallery-card mechanical show" data-category="mechanical">
+                <div class="light"></div>
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.07 PM_4xHQ.jpg">
+                <div class="tag">MECHANICAL</div>
+                <div class="icon-box"><i class="fas fa-cogs"></i></div>
+                <div class="overlay">
+                    <h3>Machine Installation</h3>
+                    <p>Heavy machinery installation services.</p>
+                </div>
+            </div>
+
+            <div class="gallery-card civil show" data-category="civil">
+                <div class="light"></div>
+                <img src="images/civil/6_4xHQ.jpg">
+                <div class="tag">CIVIL WORK</div>
+                <div class="icon-box"><i class="fas fa-road"></i></div>
+                <div class="overlay">
+                    <h3>Infrastructure Work</h3>
+                    <p>Urban development and engineering works.</p>
+                </div>
+            </div>
+
+            <div class="gallery-card mechanical show" data-category="mechanical">
+                <div class="light"></div>
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.08 PM_4xHQ.jpg">
+                <div class="tag">MECHANICAL</div>
+                <div class="icon-box"><i class="fas fa-industry"></i></div>
+                <div class="overlay">
+                    <h3>Industrial Engineering</h3>
+                    <p>Advanced industrial engineering systems.</p>
+                </div>
+            </div>
+
+            <div class="gallery-card civil show" data-category="civil">
+
+                <div class="light"></div>
+
                 <img src="images/civil/7_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Civil Construction</h3>
-                        <p>Modern structural development and infrastructure projects.</p>
-                    </div>
+
+                <div class="tag">CIVIL WORK</div>
+
+                <div class="icon-box">
+                    <i class="fas fa-building"></i>
                 </div>
+
+                <div class="overlay">
+                    <h3>Structural Development</h3>
+                    <p>Modern civil engineering and infrastructure projects.</p>
+                </div>
+
             </div>
 
-            <div class="gallery-card civil">
-                <img src="images/civil/8_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Commercial Building</h3>
-                        <p>Professional civil engineering execution with premium quality.</p>
-                    </div>
-                </div>
+            <!-- 7 MECHANICAL -->
+
+            <div class="gallery-card mechanical show" data-category="mechanical">
+
+                <div class="light"></div>
+
+                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.24 PM_4xHQ.jpg"">
+
+                <div class=" tag">MECHANICAL
             </div>
 
-            <div class="gallery-card civil">
-                <img src="images/civil/9_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Infrastructure Work</h3>
-                        <p>Advanced infrastructure and industrial civil projects.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery-card civil">
-                <img src="images/civil/10_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Civil Construction</h3>
-                        <p>Modern structural development and infrastructure projects.</p>
-                    </div>
-                </div>
+            <div class="icon-box">
+                <i class="fas fa-gears"></i>
             </div>
 
-            <div class="gallery-card civil">
-                <img src="images/civil/11_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Commercial Building</h3>
-                        <p>Professional civil engineering execution with premium quality.</p>
-                    </div>
-                </div>
+            <div class="overlay">
+                <h3>Mechanical Installation</h3>
+                <p>Industrial mechanical systems and fabrication works.</p>
             </div>
 
-            <div class="gallery-card civil">
-                <img src="images/civil/12_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Infrastructure Work</h3>
-                        <p>Advanced infrastructure and industrial civil projects.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery-card civil">
-                <img src="images/civil/13_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Civil Construction</h3>
-                        <p>Modern structural development and infrastructure projects.</p>
-                    </div>
-                </div>
+        </div>
+
+        <!-- 8 CIVIL -->
+
+        <div class="gallery-card civil show" data-category="civil">
+
+            <div class="light"></div>
+
+            <img src="images/civil/8_4xHQ.jpg" alt="">
+
+            <div class="tag">CIVIL WORK</div>
+
+            <div class="icon-box">
+                <i class="fas fa-city"></i>
             </div>
 
-            <div class="gallery-card civil">
-                <img src="images/civil/14_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Commercial Building</h3>
-                        <p>Professional civil engineering execution with premium quality.</p>
-                    </div>
-                </div>
+            <div class="overlay">
+                <h3>Commercial Construction</h3>
+                <p>Premium construction execution with advanced planning.</p>
             </div>
 
-            <div class="gallery-card civil">
-                <img src="images/civil/15_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Infrastructure Work</h3>
-                        <p>Advanced infrastructure and industrial civil projects.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- MECHANICAL -->
+        </div>
 
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.02 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Mechanical Setup</h3>
-                        <p>Industrial mechanical engineering and fabrication works.</p>
-                    </div>
-                </div>
+        <!-- 8 MECHANICAL -->
+
+        <div class="gallery-card mechanical show" data-category="mechanical">
+
+            <div class="light"></div>
+
+            <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.10 PM_4xHQ.jpg" alt="">
+
+            <div class="tag">MECHANICAL</div>
+
+            <div class="icon-box">
+                <i class="fas fa-cogs"></i>
             </div>
 
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.04 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Machine Installation</h3>
-                        <p>Heavy industrial machine setup and maintenance solutions.</p>
-                    </div>
-                </div>
+            <div class="overlay">
+                <h3>Machine Assembly</h3>
+                <p>Heavy industrial engineering and setup solutions.</p>
             </div>
 
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.05 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Industrial Engineering</h3>
-                        <p>Mechanical excellence with modern engineering standards.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.06 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Mechanical Setup</h3>
-                        <p>Industrial mechanical engineering and fabrication works.</p>
-                    </div>
-                </div>
+        </div>
+
+        <!-- 9 CIVIL -->
+
+        <div class="gallery-card civil show" data-category="civil">
+
+            <div class="light"></div>
+
+            <img src="images/civil/9_4xHQ.jpg" alt="">
+
+            <div class="tag">CIVIL WORK</div>
+
+            <div class="icon-box">
+                <i class="fas fa-road"></i>
             </div>
 
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.07 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Machine Installation</h3>
-                        <p>Heavy industrial machine setup and maintenance solutions.</p>
-                    </div>
-                </div>
+            <div class="overlay">
+                <h3>Infrastructure Project</h3>
+                <p>Urban development and structural engineering excellence.</p>
             </div>
 
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.08 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Industrial Engineering</h3>
-                        <p>Mechanical excellence with modern engineering standards.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.09 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Mechanical Setup</h3>
-                        <p>Industrial mechanical engineering and fabrication works.</p>
-                    </div>
-                </div>
+        </div>
+
+        <!-- 9 MECHANICAL -->
+
+        <div class="gallery-card mechanical show" data-category="mechanical">
+
+            <div class="light"></div>
+
+            <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.11 PM_4xHQ.jpg" alt="">
+
+            <div class="tag">MECHANICAL</div>
+
+            <div class="icon-box">
+                <i class="fas fa-industry"></i>
             </div>
 
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.10 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Machine Installation</h3>
-                        <p>Heavy industrial machine setup and maintenance solutions.</p>
-                    </div>
-                </div>
+            <div class="overlay">
+                <h3>Industrial Engineering</h3>
+                <p>Advanced industrial fabrication and engineering works.</p>
             </div>
 
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.11 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Industrial Engineering</h3>
-                        <p>Mechanical excellence with modern engineering standards.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.12 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Mechanical Setup</h3>
-                        <p>Industrial mechanical engineering and fabrication works.</p>
-                    </div>
-                </div>
+        </div>
+
+        <!-- 10 CIVIL -->
+
+        <div class="gallery-card civil show" data-category="civil">
+
+            <div class="light"></div>
+
+            <img src="images/civil/10_4xHQ.jpg" alt="">
+
+            <div class="tag">CIVIL WORK</div>
+
+            <div class="icon-box">
+                <i class="fas fa-building-columns"></i>
             </div>
 
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.24 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Machine Installation</h3>
-                        <p>Heavy industrial machine setup and maintenance solutions.</p>
-                    </div>
-                </div>
+            <div class="overlay">
+                <h3>Architectural Work</h3>
+                <p>High-quality engineering and design execution works.</p>
             </div>
 
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.15 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Industrial Engineering</h3>
-                        <p>Mechanical excellence with modern engineering standards.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.17 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Mechanical Setup</h3>
-                        <p>Industrial mechanical engineering and fabrication works.</p>
-                    </div>
-                </div>
+        </div>
+
+        <!-- 10 MECHANICAL -->
+
+        <div class="gallery-card mechanical show" data-category="mechanical">
+
+            <div class="light"></div>
+
+            <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.12 PM_4xHQ.jpg" alt="">
+
+            <div class="tag">MECHANICAL</div>
+
+            <div class="icon-box">
+                <i class="fas fa-screwdriver-wrench"></i>
             </div>
 
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.19 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Machine Installation</h3>
-                        <p>Heavy industrial machine setup and maintenance solutions.</p>
-                    </div>
-                </div>
+            <div class="overlay">
+                <h3>Mechanical Maintenance</h3>
+                <p>Industrial machinery maintenance and operations.</p>
             </div>
 
-            <div class="gallery-card mechanical">
-                <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.22 PM_4xHQ.jpg" alt="">
-                <div class="gallery-overlay">
-                    <div class="gallery-content">
-                        <h3>Industrial Engineering</h3>
-                        <p>Mechanical excellence with modern engineering standards.</p>
-                    </div>
-                </div>
+        </div>
+
+        <!-- 11 CIVIL -->
+
+        <div class="gallery-card civil show" data-category="civil">
+
+            <div class="light"></div>
+
+            <img src="images/civil/11_4xHQ.jpg" alt="">
+
+            <div class="tag">CIVIL WORK</div>
+
+            <div class="icon-box">
+                <i class="fas fa-helmet-safety"></i>
             </div>
+
+            <div class="overlay">
+                <h3>Construction Site</h3>
+                <p>Advanced civil engineering construction operations.</p>
+            </div>
+
+        </div>
+
+        <!-- 11 MECHANICAL -->
+
+        <div class="gallery-card mechanical show" data-category="mechanical">
+
+            <div class="light"></div>
+
+            <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.13 PM_4xHQ.jpg" alt="">
+
+            <div class="tag">MECHANICAL</div>
+
+            <div class="icon-box">
+                <i class="fas fa-microchip"></i>
+            </div>
+
+            <div class="overlay">
+                <h3>Automation Systems</h3>
+                <p>Modern automation and industrial engineering solutions.</p>
+            </div>
+
+        </div>
+
+        <!-- 12 CIVIL -->
+
+        <div class="gallery-card civil show" data-category="civil">
+
+            <div class="light"></div>
+
+            <img src="images/civil/12_4xHQ.jpg" alt="">
+
+            <div class="tag">CIVIL WORK</div>
+
+            <div class="icon-box">
+                <i class="fas fa-bridge"></i>
+            </div>
+
+            <div class="overlay">
+                <h3>Bridge Engineering</h3>
+                <p>Durable infrastructure and structural construction works.</p>
+            </div>
+
+        </div>
+
+        <!-- 12 MECHANICAL -->
+
+        <div class="gallery-card mechanical show" data-category="mechanical">
+
+            <div class="light"></div>
+
+            <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.14 PM_4xHQ.jpg" alt="">
+
+            <div class="tag">MECHANICAL</div>
+
+            <div class="icon-box">
+                <i class="fas fa-toolbox"></i>
+            </div>
+
+            <div class="overlay">
+                <h3>Fabrication Work</h3>
+                <p>Advanced fabrication and machine engineering services.</p>
+            </div>
+
+        </div>
+
+        <!-- 13 CIVIL -->
+
+        <div class="gallery-card civil show" data-category="civil">
+
+            <div class="light"></div>
+
+            <img src="images/civil/13_4xHQ.jpg" alt="">
+
+            <div class="tag">CIVIL WORK</div>
+
+            <div class="icon-box">
+                <i class="fas fa-industry"></i>
+            </div>
+
+            <div class="overlay">
+                <h3>Industrial Civil Work</h3>
+                <p>Industrial civil infrastructure and development projects.</p>
+            </div>
+
+        </div>
+
+        <!-- 13 MECHANICAL -->
+
+        <div class="gallery-card mechanical show" data-category="mechanical">
+
+            <div class="light"></div>
+
+            <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.15 PM_4xHQ.jpg" alt="">
+
+            <div class="tag">MECHANICAL</div>
+
+            <div class="icon-box">
+                <i class="fas fa-oil-can"></i>
+            </div>
+
+            <div class="overlay">
+                <h3>Heavy Machinery</h3>
+                <p>Industrial heavy machinery and engineering projects.</p>
+            </div>
+
+        </div>
+
+        <!-- 14 CIVIL -->
+
+        <div class="gallery-card civil show" data-category="civil">
+
+            <div class="light"></div>
+
+            <img src="images/civil/14_4xHQ.jpg" alt="">
+
+            <div class="tag">CIVIL WORK</div>
+
+            <div class="icon-box">
+                <i class="fas fa-building-circle-check"></i>
+            </div>
+
+            <div class="overlay">
+                <h3>Premium Construction</h3>
+                <p>Professional civil engineering with modern standards.</p>
+            </div>
+
+        </div>
+
+        <!-- 14 MECHANICAL -->
+
+        <div class="gallery-card mechanical show" data-category="mechanical">
+
+            <div class="light"></div>
+
+            <img src="images/mechanical/WhatsApp Image 2026-06-06 at 5.59.17 PM_4xHQ.jpg" alt="">
+
+            <div class="tag">MECHANICAL</div>
+
+            <div class="icon-box">
+                <i class="fas fa-gear"></i>
+            </div>
+
+            <div class="overlay">
+                <h3>Mechanical Engineering</h3>
+                <p>Professional engineering with modern industrial systems.</p>
+            </div>
+
+        </div>
 
         </div>
 
@@ -642,53 +658,6 @@
             <p>© 2026 SBI Group. All Rights Reserved.</p>
         </div>
     </footer>
-
-    <script>
-        const filterButtons = document.querySelectorAll(".filter-btn");
-        const galleryCards = document.querySelectorAll(".gallery-card");
-
-        filterButtons.forEach(button => {
-
-            button.addEventListener("click", () => {
-
-                document.querySelector(".filter-btn.active").classList.remove("active");
-                button.classList.add("active");
-
-                const filterValue = button.getAttribute("data-filter");
-
-                galleryCards.forEach(card => {
-
-                    card.style.transform = "scale(0.8)";
-                    card.style.opacity = "0";
-
-                    setTimeout(() => {
-
-                        if (filterValue === "all") {
-                            card.style.display = "block";
-                        }
-
-                        else if (card.classList.contains(filterValue)) {
-                            card.style.display = "block";
-                        }
-
-                        else {
-                            card.style.display = "none";
-                        }
-
-                        setTimeout(() => {
-                            card.style.transform = "scale(1)";
-                            card.style.opacity = "1";
-                        }, 100);
-
-                    }, 300);
-
-                });
-
-            });
-
-        });
-    </script>
-
 </body>
 
 </html>
