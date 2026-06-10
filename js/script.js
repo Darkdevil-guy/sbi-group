@@ -1,109 +1,154 @@
+/* =========================================================
+   SBI GROUP - PROFESSIONAL MAIN SCRIPT
+========================================================= */
 
-window.addEventListener('scroll', () => {
-    document.querySelectorAll('.card').forEach(card => {
+/* ================= SCROLL REVEAL ================= */
+
+function revealCards() {
+
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+
         const top = card.getBoundingClientRect().top;
-        if (top < window.innerHeight - 50) {
+
+        if (top < window.innerHeight - 80) {
+
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
+
         }
+
     });
-});
+
+}
+
+window.addEventListener('scroll', revealCards);
+
+window.addEventListener('load', revealCards);
+
+
+/* ================= GALLERY FILTER ================= */
+
 const filterButtons = document.querySelectorAll('.filter-btn');
+
 const galleryGrid = document.querySelector('.gallery-grid');
-const cards = Array.from(document.querySelectorAll('.gallery-card'));
 
-filterButtons.forEach(button => {
+const galleryCards = Array.from(
+    document.querySelectorAll('.gallery-card')
+);
 
-    button.addEventListener('click', () => {
+if (filterButtons.length && galleryGrid) {
 
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+    filterButtons.forEach(button => {
 
-        const filter = button.getAttribute('data-filter');
+        button.addEventListener('click', () => {
 
-        /* REMOVE ALL CARDS */
-        galleryGrid.innerHTML = '';
+            /* REMOVE ACTIVE */
 
-        let filteredCards = [];
+            filterButtons.forEach(btn => {
 
-        /* ALL WORKS ALTERNATING */
+                btn.classList.remove('active');
 
-        if (filter === 'all') {
+            });
 
-            const civilCards = cards.filter(card =>
-                card.classList.contains('civil')
-            );
+            button.classList.add('active');
 
-            const mechanicalCards = cards.filter(card =>
-                card.classList.contains('mechanical')
-            );
+            /* FILTER TYPE */
 
-            const maxLength = Math.max(
-                civilCards.length,
-                mechanicalCards.length
-            );
+            const filter = button.getAttribute('data-filter');
 
-            for (let i = 0; i < maxLength; i++) {
+            galleryGrid.innerHTML = '';
 
-                if (civilCards[i]) {
-                    filteredCards.push(civilCards[i]);
-                }
+            let filteredCards = [];
 
-                if (mechanicalCards[i]) {
-                    filteredCards.push(mechanicalCards[i]);
+            /* ================= ALL ================= */
+
+            if (filter === 'all') {
+
+                const civilCards = galleryCards.filter(card =>
+                    card.classList.contains('civil')
+                );
+
+                const mechanicalCards = galleryCards.filter(card =>
+                    card.classList.contains('mechanical')
+                );
+
+                const maxLength = Math.max(
+                    civilCards.length,
+                    mechanicalCards.length
+                );
+
+                for (let i = 0; i < maxLength; i++) {
+
+                    if (civilCards[i]) {
+
+                        filteredCards.push(civilCards[i]);
+
+                    }
+
+                    if (mechanicalCards[i]) {
+
+                        filteredCards.push(mechanicalCards[i]);
+
+                    }
+
                 }
 
             }
 
-        }
+            /* ================= CIVIL ================= */
 
-        /* ONLY CIVIL */
+            else if (filter === 'civil') {
 
-        else if (filter === 'civil') {
+                filteredCards = galleryCards.filter(card =>
+                    card.classList.contains('civil')
+                );
 
-            filteredCards = cards.filter(card =>
-                card.classList.contains('civil')
-            );
+            }
 
-        }
+            /* ================= MECHANICAL ================= */
 
-        /* ONLY MECHANICAL */
+            else if (filter === 'mechanical') {
 
-        else if (filter === 'mechanical') {
+                filteredCards = galleryCards.filter(card =>
+                    card.classList.contains('mechanical')
+                );
 
-            filteredCards = cards.filter(card =>
-                card.classList.contains('mechanical')
-            );
+            }
 
-        }
+            /* ================= APPEND FILTERED ================= */
 
-        /* APPEND CARDS */
+            filteredCards.forEach((card, index) => {
 
-        filteredCards.forEach((card, index) => {
+                card.style.opacity = '0';
 
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(50px)';
+                card.style.transform = 'translateY(50px)';
 
-            galleryGrid.appendChild(card);
+                galleryGrid.appendChild(card);
 
-            setTimeout(() => {
+                setTimeout(() => {
 
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
+                    card.style.opacity = '1';
 
-            }, index * 80);
+                    card.style.transform = 'translateY(0)';
+
+                }, index * 80);
+
+            });
 
         });
 
     });
 
-});
+}
 
-/* INITIAL LOAD ANIMATION */
+
+/* ================= INITIAL GALLERY LOAD ================= */
 
 window.addEventListener('load', () => {
 
-    cards.forEach((card, index) => {
+    galleryCards.forEach((card, index) => {
 
         setTimeout(() => {
 
@@ -114,3 +159,23 @@ window.addEventListener('load', () => {
     });
 
 });
+
+/* ================= SAFE CONTACT FORM ================= */
+
+const form = document.getElementById('contactForm');
+
+if (form) {
+
+    form.addEventListener('submit', (e) => {
+
+        e.preventDefault();
+
+    });
+
+}
+
+
+/* ================= FORCE INITIAL REVEAL ================= */
+
+window.dispatchEvent(new Event('scroll'));
+

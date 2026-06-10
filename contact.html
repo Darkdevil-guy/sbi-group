@@ -2,24 +2,44 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Contact Us - SBI Group</title>
+
+    <!-- ================= MAIN CSS ================= -->
+
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- ================= FAVICON ================= -->
+
     <link rel="icon" href="images/logo.jpeg">
+
+    <!-- ================= FONT AWESOME ================= -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body>
 
-    <header>
-        <div class="logo">
-            <img src="images/logo.jpeg" alt="logo">
-            <span>SBI GROUP</span>
-        </div>
-        <nav>
+    <!-- ================= HEADER ================= -->
 
-            <a href="index.html" class="">
+    <header class="main-header">
+
+        <div class="logo">
+
+            <img src="images/logo.jpeg" alt="logo">
+
+            <span>SBI GROUP</span>
+
+        </div>
+
+        <nav class="main-nav">
+
+            <a href="index.html">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
@@ -48,76 +68,182 @@
 
     </header>
 
-    <section class="inner-page-section">
-        <h2 class="section-title">Contact Us</h2>
-        <p class="section-subtitle">Have a project in mind? Reach out to us today for a consultation or inquiry.</p>
+    <!-- ================= CONTACT SECTION ================= -->
 
-        <form action="#" method="POST">
+    <section class="inner-page-section contact-section">
+
+        <h2 class="section-title">
+            Contact Us
+        </h2>
+
+        <p class="section-subtitle">
+
+            Have a project in mind?
+            Reach out to us today for a consultation or inquiry.
+
+        </p>
+
+        <!-- ================= CONTACT FORM ================= -->
+
+        <form id="contactForm" action="#" method="POST" class="contact-form">
+
             <div class="form-group">
-                <label for="name">Your Name</label>
+
+                <label for="name">
+                    Your Name
+                </label>
+
                 <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
             </div>
 
             <div class="form-group">
-                <label for="email">Email Address</label>
+
+                <label for="email">
+                    Email Address
+                </label>
+
                 <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
             </div>
 
             <div class="form-group">
-                <label for="phone">Phone Number</label>
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
                 <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
             </div>
 
             <div class="form-group">
-                <label for="message">Your Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+
+                <label for="message">
+                    Your Message
+                </label>
+
+                <textarea id="message" name="message" rows="6" placeholder="How can we help you?" required></textarea>
+
             </div>
 
-            <button type="submit">Send Inquiry</button>
+            <button type="submit" class="btn btn-primary form-btn">
+
+                Send Inquiry
+
+            </button>
+
         </form>
+
     </section>
 
+    <!-- ================= FOOTER ================= -->
+
     <footer class="footer">
+
         <div class="footer-container">
+
+            <!-- ================= BRAND ================= -->
+
             <div class="footer-brand">
+
                 <img src="images/logo.jpeg" alt="SBI Group Logo">
+
                 <h2>SBI GROUP</h2>
+
                 <p>
-                    Srinivasa Build India Private Limited is a premium engineering and
-                    construction company delivering industrial, structural, and heavy lifting
-                    solutions with excellence and professionalism.
+
+                    Srinivasa Build India Private Limited is a premium
+                    engineering and construction company delivering
+                    industrial, structural, and heavy lifting solutions
+                    with excellence and professionalism.
+
                 </p>
+
             </div>
+
+            <!-- ================= QUICK LINKS ================= -->
+
             <div class="footer-links">
+
                 <h3>Quick Links</h3>
+
                 <a href="index.html">Home</a>
+
                 <a href="about.html">About</a>
+
                 <a href="services.html">Services</a>
+
                 <a href="contact.html">Contact</a>
-                <a href="privacy-policy.html">Privacy & policy</a>
-                <a href="terms-and-conditions.html">Terms & conditions</a>
+
+                <a href="privacy-policy.html">
+                    Privacy & policy
+                </a>
+
+                <a href="terms-and-conditions.html">
+                    Terms & conditions
+                </a>
+
             </div>
+
+            <!-- ================= CONTACT INFO ================= -->
+
             <div class="footer-contact">
+
                 <h3>Contact Info</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Ballari, Karnataka</p>
-                <p><i class="fas fa-phone"></i> +91 96117 72529</p>
-                <p><i class="fas fa-phone"></i> +91 94492 26789</p>
-                <p><i class="fas fa-envelope"></i> sbi.pvtltd786@gmail.com</p>
-                <p><i class="fas fa-globe"></i> www.sbigroup.in</p>
+
+                <p>
+                    <i class="fas fa-map-marker-alt"></i>
+                    Ballari, Karnataka
+                </p>
+
+                <p>
+                    <i class="fas fa-phone"></i>
+                    +91 96117 72529
+                </p>
+
+                <p>
+                    <i class="fas fa-phone"></i>
+                    +91 94492 26789
+                </p>
+
+                <p>
+                    <i class="fas fa-envelope"></i>
+                    sbi.pvtltd786@gmail.com
+                </p>
+
+                <p>
+                    <i class="fas fa-globe"></i>
+                    www.sbigroup.in
+                </p>
+
             </div>
+
         </div>
+
+        <!-- ================= COPYRIGHT ================= -->
+
         <div class="footer-bottom">
-            <p>© 2026 SBI Group. All Rights Reserved.</p>
+
+            <p>
+                © 2026 SBI Group. All Rights Reserved.
+            </p>
+
         </div>
+
     </footer>
 
-    <!-- WhatsApp Floating Button -->
+    <!-- ================= WHATSAPP ================= -->
+
     <a href="https://wa.me/919611772529" class="whatsapp-float" target="_blank">
+
         <i class="fab fa-whatsapp"></i>
+
     </a>
 
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- ================= MAIN JS ================= -->
+
+    <script defer src="js/script.js"></script>
 
 </body>
 
