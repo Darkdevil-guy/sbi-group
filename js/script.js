@@ -286,17 +286,17 @@ window.addEventListener('load', () => {
 
 /* ================= SAFE CONTACT FORM ================= */
 
-const form = document.getElementById('contactForm');
+// const form = document.getElementById('contactForm');
 
-if (form) {
+// if (form) {
 
-    form.addEventListener('submit', (e) => {
+//     form.addEventListener('submit', (e) => {
 
-        e.preventDefault();
+//         e.preventDefault();
 
-    });
+//     });
 
-}
+// }
 
 
 /* ================= FORCE INITIAL REVEAL ================= */

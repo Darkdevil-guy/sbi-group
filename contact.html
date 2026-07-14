@@ -85,52 +85,38 @@
 
         <!-- ================= CONTACT FORM ================= -->
 
-        <form id="contactForm" action="#" method="POST" class="contact-form">
+        <form
+            id="contactForm"
+            action="https://api.web3forms.com/submit"
+            method="POST"
+            class="contact-form">
+
+            <input type="hidden" name="access_key" value="1d9a0fd2-6477-4515-b693-1d24b54f2c09">
+            <input type="hidden" name="subject" value="New Contact Form Submission - SBI Group">
+            <input type="hidden" name="from_name" value="SBI Group Website">
 
             <div class="form-group">
-
-                <label for="name">
-                    Your Name
-                </label>
-
+                <label for="name">Your Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-
             </div>
 
             <div class="form-group">
-
-                <label for="email">
-                    Email Address
-                </label>
-
+                <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-
             </div>
 
             <div class="form-group">
-
-                <label for="phone">
-                    Phone Number
-                </label>
-
+                <label for="phone">Phone Number</label>
                 <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-
             </div>
 
             <div class="form-group">
-
-                <label for="message">
-                    Your Message
-                </label>
-
+                <label for="message">Your Message</label>
                 <textarea id="message" name="message" rows="6" placeholder="How can we help you?" required></textarea>
-
             </div>
 
             <button type="submit" class="btn btn-primary form-btn">
-
-                Send Inquiry
-
+                Submit
             </button>
 
         </form>
